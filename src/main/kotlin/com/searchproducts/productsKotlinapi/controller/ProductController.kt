@@ -1,6 +1,6 @@
 package com.searchproducts.productsKotlinapi.controller
 
-import com.searchproducts.productsKotlinapi.Exception.UserNotAuthenticatedException
+import com.searchproducts.productsKotlinapi.exception.UserNotAuthenticatedException
 import com.searchproducts.productsKotlinapi.model.Product
 import com.searchproducts.productsKotlinapi.service.ProductService
 import org.springframework.beans.factory.annotation.Autowired
@@ -16,12 +16,9 @@ class ProductController(@Autowired val productService : ProductService) {
         if(header.isNotEmpty() && header.equals("c90d1l3a-d088-43c4-bd19-1093af3048cf")) {
             return productService.getAllProducts()
             }
-
         else {
             throw UserNotAuthenticatedException("Send Valid API Key in request header")
         }
-      return listOf<Product>()
-
     }
 
 }

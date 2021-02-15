@@ -13,7 +13,7 @@ class ProductsDAO( @Autowired val jdbcTemplate : JdbcTemplate) : DAO<Product>{
 
    val rowMapper :  RowMapper<Product>  = RowMapper<Product> {
        rs: ResultSet, rowNum: Int  ->  Product(
-           rs.getInt("productId").toString(),
+           rs.getInt("productId"),
            rs.getString("productName"),
            rs.getString("categoryName")
         )

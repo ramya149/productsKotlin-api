@@ -15,8 +15,8 @@ class PartsDAO( @Autowired val jdbcTemplate : JdbcTemplate) : DAO<Part>{
         rs: ResultSet, rowNum: Int  ->  Part(
             rs.getString("punctuatedPartNumber"),
             rs.getString("partDescr"),
-            rs.getInt("productId").toString(),
-            rs.getBigDecimal("originalRetailPrice").toString(),
+            rs.getInt("productId"),
+            rs.getBigDecimal("originalRetailPrice"),
             rs.getString("brandName"),
             rs.getString("brandImage")
 
