@@ -7,7 +7,7 @@ import com.searchproducts.productsKotlinapi.model.Part
 import com.searchproducts.productsKotlinapi.model.Product
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import java.util.ArrayList
+
 
 @Service
 class ProductService(@Autowired val productDaoImpl : ProductsDAO,
@@ -32,20 +32,22 @@ class ProductService(@Autowired val productDaoImpl : ProductsDAO,
 
     }
 
-    /* To fetch all Parts*/
-    fun getAllParts() : List<Part> {
-        return partDaoImpl.getAllList()
-    }
+    /* To fetch all Parts. Return keyword is removed as there is only 1 line of expression
+     and also the return data type List<Part> is removed as it will be inferred by Kotlin*/
+    fun getAllParts() =
+         partDaoImpl.getAllList()
+
 
     /*To iterate over the Parts List and map them to respective Products by comparing the ProductId */
     fun addPartsToProducts(productsList: List<Product>, partsList: List<Part>): List<Product> {
         for (product in productsList) {
-            val newPartsList: MutableList<Part> = ArrayList()
+            val newPartsList = arrayListOf<Part>()
             for (part in partsList) {
-                if (part.productId.equals(product.productId)) {
+                if (part.productId == product.productId) {
                     newPartsList.add(part)
                 }
             }
+
             product.partsList.addAll(newPartsList)
         }
         return productsList

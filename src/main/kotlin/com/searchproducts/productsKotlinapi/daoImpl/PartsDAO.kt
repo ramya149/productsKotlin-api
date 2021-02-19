@@ -11,6 +11,7 @@ import java.sql.ResultSet
 @Repository
 class PartsDAO( @Autowired val jdbcTemplate : JdbcTemplate) : DAO<Part>{
 
+
     val rowMapper :  RowMapper<Part>  = RowMapper<Part> {
         rs: ResultSet, rowNum: Int  ->  Part(
             rs.getString("punctuatedPartNumber"),
